@@ -1,0 +1,41 @@
+
+
+{% extends 'portfolio/base.html' %}
+
+{% block content%}
+
+{% load static %}
+
+
+<div class="row">
+  <div class="text-center">
+    <img src="{% static  'portfolio/EduardoProfile.png' %}" alt="imageProfile" height="300">
+    <p><h2>Software Enginner</p></h2>
+  </div>
+</div>
+<div class="row">
+  <h2>Portfolio</h2>
+  <hr>
+</div>
+<div class="row row-cols-1 row-cols-md-3 g-4">
+  {% for project in projects %}
+    <div class="col">
+      <div class="card">
+        {% if project.url%}
+        <a href="{{ project.url }}" target="_blank">
+        {% endif %}
+          <img src="{{ project.image.url }}" class="card-img-top" alt="..." style="height:300px;object-fit:cover;">
+        {% if project.url%}
+        </a>
+        {% endif %}
+
+        <div class="card-body">
+          <h5 class="card-title">{{ project.title }}</h5>
+          <p class="card-text">{{ project.description }}</p>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
+{% endblock %}
